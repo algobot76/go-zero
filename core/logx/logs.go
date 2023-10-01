@@ -162,6 +162,8 @@ func Field(key string, value any) LogField {
 		}
 		return LogField{Key: key, Value: errs}
 	case time.Duration:
+		// (ab76) time.Duration implements fmt.Stringer as well!
+		// (ab76) I don't think this is necessary.
 		return LogField{Key: key, Value: fmt.Sprint(val)}
 	case []time.Duration:
 		var durs []string
@@ -175,7 +177,7 @@ func Field(key string, value any) LogField {
 			times = append(times, fmt.Sprint(t))
 		}
 		return LogField{Key: key, Value: times}
-	case fmt.Stringer:
+	case fmt.Stringer: // (ab76) defines how a type is represented as a string
 		return LogField{Key: key, Value: val.String()}
 	case []fmt.Stringer:
 		var strs []string
