@@ -78,6 +78,7 @@ func (tp *TokenParser) ParseToken(r *http.Request, secret, prevSecret string) (*
 	return token, nil
 }
 
+// (ab76) A good example on how to use the jwt library to parse a token.
 func (tp *TokenParser) doParseToken(r *http.Request, secret string) (*jwt.Token, error) {
 	return request.ParseFromRequest(r, request.AuthorizationHeaderExtractor,
 		func(token *jwt.Token) (any, error) {
