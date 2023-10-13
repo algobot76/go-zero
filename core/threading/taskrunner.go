@@ -13,6 +13,7 @@ type TaskRunner struct {
 // NewTaskRunner returns a TaskRunner.
 func NewTaskRunner(concurrency int) *TaskRunner {
 	return &TaskRunner{
+		// (ab76) use a buffered channel for concurrency control
 		limitChan: make(chan lang.PlaceholderType, concurrency),
 	}
 }
