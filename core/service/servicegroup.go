@@ -10,6 +10,7 @@ import (
 
 type (
 	// Starter is the interface wraps the Start method.
+	// (ab76) e.g. Server.Start()
 	Starter interface {
 		Start()
 	}
@@ -73,6 +74,7 @@ func (sg *ServiceGroup) doStart() {
 		})
 	}
 
+	// (ab76) wg.Wait()
 	routineGroup.Wait()
 }
 
